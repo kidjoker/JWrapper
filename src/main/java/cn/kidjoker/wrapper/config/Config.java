@@ -31,10 +31,82 @@ public class Config implements Cloneable {
 	 */
 	private int timeout;
 	
-	/** 
+	/**
+	 * 下载间隔
+	 */
 	private int delay = 1000;
 	
+	/** 
+	 * 下载线程数
+	 */
 	private int paraelThreads = Runtime.getRuntime().availableProcessors() * 2;
 	
+	/**
+	 * 浏览器版本
+	 */
+	private String userAgent = EnumUserAgent.CHROME_FOR_MAC.getValue();
 	
+	/**
+	 * 请求队列长度
+	 */
+	private int queuesize;
+	
+	public static Config build() {
+		return new Config();
+	}
+
+	public int getTimeout() {
+		return timeout;
+	}
+
+	public Config timeout(int timeout) {
+		this.timeout = timeout;
+		return this;
+	}
+
+	public int getDelay() {
+		return delay;
+	}
+
+	public Config delay(int delay) {
+		this.delay = delay;
+		return this;
+	}
+
+	public int getParaelThreads() {
+		return paraelThreads;
+	}
+
+	public Config paraelThreads(int paraelThreads) {
+		this.paraelThreads = paraelThreads;
+		return this;
+	}
+
+	public String getUserAgent() {
+		return userAgent;
+	}
+
+	public Config userAgent(String userAgent) {
+		this.userAgent = userAgent;
+		return this;
+	}
+
+	public int getQueuesize() {
+		return queuesize;
+	}
+
+	public Config queuesize(int queuesize) {
+		this.queuesize = queuesize;
+		return this;
+	}
+	
+	@Override
+	public Config clone() {
+		try {
+			return (Config)super.clone();
+		}
+		catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
